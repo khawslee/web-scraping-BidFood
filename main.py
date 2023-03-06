@@ -10,18 +10,21 @@ args = parser.parse_args()
 
 if args.product and args.id:
     bidFood = BidFood(args.product, args.id)
-    scrapProduct = bidFood.scrap_product()
-    print(scrapProduct)
-    # If output file is specified, write the scraped product to the file
-    if args.output:
-        with open(args.output, 'w') as f:
-            f.write(scrapProduct)
+    try:
+        scrapProduct = bidFood.scrap_product()
+        print(scrapProduct)
+        # If output file is specified, write the scraped product to the file
+        if args.output:
+            with open(args.output, 'w') as f:
+                f.write(scrapProduct)
+    except Exception as e:
+        print("Error scraping the product: ", str(e))
 else:
     print("Please specify the product name and productId")
 
 # Sample code to call in python function
-# bigFood = BidFood("oude-kaas-salade-50-gr-per-cupje-tray-12-cupjes","009567TR")
-# getproduct = bigFood.scrap_product()
+#bigFood = BidFood("oude-kaas-salade-50-gr-per-cupje-tray-12-cupjes","009567TR")
+#getproduct = bigFood.scrap_product()
 
 # getproduct is a json string
-# print(getproduct)
+#print(getproduct)
